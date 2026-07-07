@@ -1,0 +1,2683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Life Nutrics – Elevating Lives</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet"/>
+  <!-- Language System -->
+<script src="languages.js"></script> 
+  <style>
+    /* ===== RESET & BASE ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #244e9b;
+      --primary-light: #a69aed;
+      --gold: #c9a84c;
+      --gold-light: #e8d5a3;
+      --gold-dark: #a8893a;
+      --cream: #fdf8f0;
+      --white: #ffffff;
+      --dark: #1a1a1a;
+      --gray: #6b6b6b;
+      --shadow: 0 20px 60px rgba(0,0,0,0.1);
+      --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+.nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 16px 0;
+      background: #1A52C4;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+    }
+    .nav.scrolled {
+      background: rgba(2, 34, 113, 0.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+      padding: 10px 0;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .nav-brand a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .brand-icon {
+      font-size: 28px;
+      color: var(--gold);
+    }
+    .brand-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 18px;
+      color: var(--white);
+      letter-spacing: 1px;
+    }
+    .brand-tag {
+      display: block;
+      font-size: 9px;
+      color: var(--gold-light);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.8);
+      font-size: 14px;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+    .nav-links a:hover,
+    .nav-links a.nav-active {
+      color: var(--gold);
+    }
+    .nav-links a.nav-active::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gold);
+    }
+    .btn-nav {
+      background: var(--gold);
+      color: var(--primary) !important;
+      padding: 8px 24px;
+      border-radius: 50px;
+      font-weight: 600 !important;
+      transition: var(--transition);
+    }
+    .btn-nav:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+    }
+    .hamburger span {
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--white);
+      transition: var(--transition);
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--primary);
+      padding: 100px 0 60px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, #0D2B6B 0%, #1A3FA0 50%, #0D2B6B 100%);
+      pointer-events: none;
+    }
+    .hero-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      gap: 60px;
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+    .hero-content {
+      flex: 1;
+      max-width: 600px;
+    }
+    .hero-eyebrow {
+      font-size: 13px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 68px;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .hero-accent {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 18px;
+      color: var(--gold-light);
+      font-weight: 300;
+      letter-spacing: 4px;
+      margin-bottom: 20px;
+    }
+    .hero-desc {
+      font-size: 15px;
+      color: rgba(255,255,255,0.8);
+      max-width: 520px;
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+    .hero-cta-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--primary);
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(201, 168, 76, 0.4);
+    }
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      padding: 12px 36px;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 15px;
+      transition: var(--transition);
+    }
+    .btn-outline:hover {
+      border-color: var(--gold);
+      background: rgba(201, 168, 76, 0.1);
+    }
+
+    /* Hero Image */
+    .hero-image {
+      flex: 1;
+      max-width: 480px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+      transition: all 0.4s ease;
+      position: relative;
+      perspective: 1000px;
+    }
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(201, 168, 76, 0.15), rgba(26, 58, 43, 0.2));
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+      border-radius: 24px;
+    }
+    .hero-image:hover {
+      box-shadow: 0 0 40px rgba(201, 168, 76, 0.25), 0 30px 80px rgba(0,0,0,0.4);
+    }
+    .hero-image:hover img {
+      transform: scale(1.06) rotateY(-3deg) rotateX(2deg);
+    }
+    .hero-image:hover::after {
+      opacity: 1;
+    }
+
+    /* Hero Stats */
+    .hero-stats-wrap {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      padding: 40px 24px 20px;
+      position: relative;
+      z-index: 2;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .hero-stat {
+      text-align: center;
+      padding: 16px 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(4px);
+      min-width: 140px;
+    }
+    .stat-num {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ===== NUTRIKA DETAILS SECTION ===== */
+.nutrika-details {
+  padding: 80px 0;
+  background: var(--white);
+}
+
+.nutrika-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 60px;
+}
+
+/* Left Column - Image */
+.nutrika-image {
+  flex: 1;
+  max-width: 500px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 100px;
+  position: relative;
+}
+
+.nutrika-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: var(--transition);
+}
+
+.nutrika-image:hover img {
+  transform: scale(1.02);
+}
+
+.nutrika-image-badge {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(26, 58, 43, 0.85);
+  backdrop-filter: blur(8px);
+  padding: 12px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(201, 168, 76, 0.2);
+}
+
+.nutrika-image-badge .badge-icon {
+  font-size: 20px;
+}
+
+.nutrika-image-badge .badge-text {
+  color: var(--gold-light);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Right Column - Content */
+.nutrika-content {
+  flex: 1.5;
+}
+
+.nutrika-content .section-label {
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.nutrika-content .section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  color: var(--primary);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.nutrika-content .section-title .hero-accent {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nutrika-intro {
+  font-size: 17px;
+  color: var(--dark);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+/* What Nutrika is NOT */
+.nutrika-not {
+  background: rgba(244, 67, 54, 0.05);
+  padding: 20px 24px;
+  border-radius: 12px;
+  border-left: 4px solid #e53935;
+  margin: 20px 0;
+}
+
+.nutrika-not p {
+  font-size: 14px;
+  color: var(--gray);
+  line-height: 1.8;
+}
+
+.nutrika-not strong {
+  color: var(--dark);
+}
+
+.nutrika-not .cross {
+  color: #e53935;
+  font-weight: 700;
+}
+
+.nutrika-not .check {
+  color: #43a047;
+  font-weight: 700;
+}
+
+.nutrika-divider {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  margin: 20px 0;
+  border-radius: 4px;
+}
+
+/* Nutrika Benefits List */
+.nutrika-benefits {
+  margin: 20px 0;
+  padding: 24px 28px;
+  background: var(--cream);
+  border-radius: 16px;
+}
+
+.nutrika-benefits h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+.nutrika-benefits ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.nutrika-benefits ul li {
+  font-size: 14px;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nutrika-benefits ul li::before {
+  content: '✔️';
+  color: var(--gold);
+  font-size: 14px;
+}
+
+/* Technology Grid */
+.nutrika-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.nutrika-tech-item {
+  background: var(--cream);
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.nutrika-tech-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.nutrika-tech-item .tech-flag {
+  font-size: 36px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.nutrika-tech-item h5 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: var(--primary);
+  margin-bottom: 2px;
+}
+
+.nutrika-tech-item .tech-sub {
+  font-size: 12px;
+  color: var(--gold-dark);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.nutrika-tech-item p {
+  font-size: 13px;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* ===== NUTRIKA SUPPORT WITH IMAGE ===== */
+.nutrika-support-with-image {
+  display: flex;
+  align-items: stretch;
+  gap: 30px;
+  margin: 20px 0 30px;
+  background: var(--cream);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 168, 76, 0.1);
+}
+
+.nutrika-support-content {
+  flex: 1.5;
+  padding: 28px 30px;
+}
+
+.nutrika-support-content h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.nutrika-support-content ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 16px;
+  list-style: none;
+  padding: 0;
+}
+
+.nutrika-support-content ul li {
+  font-size: 14px;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nutrika-support-content ul li::before {
+  content: '✦';
+  color: var(--gold);
+  font-size: 12px;
+}
+
+.nutrika-support-image {
+  flex: 1;
+  max-width: 280px;
+  position: relative;
+  overflow: hidden;
+}
+
+.nutrika-support-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: var(--transition);
+}
+
+.nutrika-support-image:hover img {
+  transform: scale(1.05);
+}
+
+.support-image-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(26, 58, 43, 0.8);
+  backdrop-filter: blur(4px);
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(201, 168, 76, 0.15);
+}
+
+.support-image-overlay .overlay-icon {
+  font-size: 24px;
+}
+
+.support-image-overlay .overlay-text {
+  color: var(--gold-light);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .nutrika-layout {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .nutrika-image {
+    max-width: 100%;
+    position: relative;
+    top: 0;
+  }
+  
+  .nutrika-support-with-image {
+    flex-direction: column;
+  }
+  
+  .nutrika-support-image {
+    max-width: 100%;
+    min-height: 200px;
+  }
+  
+  .nutrika-tech-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .nutrika-benefits ul {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .nutrika-content .section-title {
+    font-size: 32px;
+  }
+  
+  .nutrika-tech-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .nutrika-benefits ul {
+    grid-template-columns: 1fr;
+  }
+  
+  .nutrika-support-content ul {
+    grid-template-columns: 1fr;
+  }
+  
+  .nutrika-support-content {
+    padding: 20px;
+  }
+  
+  .nutrika-image-badge {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    padding: 8px 14px;
+  }
+  
+  .nutrika-image-badge .badge-text {
+    font-size: 12px;
+  }
+  
+  .nutrika-support-image {
+    min-height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nutrika-content .section-title {
+    font-size: 28px;
+  }
+  
+  .nutrika-not {
+    padding: 16px;
+  }
+  
+  .nutrika-benefits {
+    padding: 16px;
+  }
+  
+  .nutrika-image-badge {
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    padding: 6px 12px;
+  }
+  
+  .nutrika-image-badge .badge-icon {
+    font-size: 16px;
+  }
+  
+  .nutrika-image-badge .badge-text {
+    font-size: 11px;
+  }
+}
+    /* ===== DISCLAIMER ===== */
+    .disclaimer-bar {
+      background: linear-gradient(135deg, #0D2B6B 0%, #1A3FA0 50%, #0D2B6B 100%);
+      padding: 20px 0;
+    }
+    .disclaimer-bar p {
+      color: rgba(255,255,255,0.7);
+      font-size: 13px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    .disclaimer-bar strong {
+      color: var(--gold-light);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: linear-gradient(135deg, #0D2B6B 0%, #1A3FA0 50%, #0D2B6B 100%);
+      padding: 30px 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer p {
+      color: rgba(255,255,255,0.5);
+      font-size: 13px;
+      text-align: center;
+    }
+    .footer a {
+      color: var(--gold-light);
+      transition: var(--transition);
+    }
+    .footer a:hover {
+      color: var(--gold);
+    }
+    .footer-global {
+      font-size: 12px;
+      margin-top: 6px;
+    }
+
+    
+    /* ===== NUTRIKA DETAILS SECTION ===== */
+    .nutrika-details {
+      padding: 80px 0;
+      background: var(--white);
+    }
+    .nutrika-details .container {
+      display: flex;
+      align-items: flex-start;
+      gap: 60px;
+    }
+    .nutrika-image {
+      flex: 1;
+      max-width: 500px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 100px;
+    }
+    .nutrika-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: var(--transition);
+    }
+    .nutrika-image:hover img {
+      transform: scale(1.02);
+    }
+    .nutrika-content {
+      flex: 1.5;
+    }
+    .nutrika-content .section-label {
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .nutrika-content .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      color: var(--primary);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .nutrika-content .section-title .hero-accent {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nutrika-intro {
+      font-size: 17px;
+      color: var(--dark);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    .nutrika-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin: 30px 0;
+    }
+    .nutrika-card {
+      background: var(--cream);
+      padding: 24px 28px;
+      border-radius: 16px;
+      border-left: 4px solid var(--gold);
+      transition: var(--transition);
+    }
+    .nutrika-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+    .nutrika-card .card-icon {
+      font-size: 28px;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .nutrika-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+    .nutrika-card p {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    .nutrika-tech-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin: 30px 0;
+    }
+    .nutrika-tech-item {
+      background: var(--cream);
+      padding: 20px;
+      border-radius: 16px;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .nutrika-tech-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+    .nutrika-tech-item .tech-flag {
+      font-size: 36px;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .nutrika-tech-item h5 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      color: var(--primary);
+      margin-bottom: 2px;
+    }
+    .nutrika-tech-item .tech-sub {
+      font-size: 12px;
+      color: var(--gold-dark);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .nutrika-tech-item p {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    .nutrika-benefits {
+      margin: 30px 0;
+      padding: 30px;
+      background: var(--cream);
+      border-radius: 16px;
+    }
+    .nutrika-benefits h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+    .nutrika-benefits ul {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 20px;
+      list-style: none;
+      padding: 0;
+    }
+    .nutrika-benefits ul li {
+      font-size: 14px;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nutrika-benefits ul li::before {
+      content: '✔️';
+      color: var(--gold);
+      font-size: 14px;
+    }
+
+    .nutrika-not {
+      background: rgba(244, 67, 54, 0.05);
+      padding: 20px 24px;
+      border-radius: 12px;
+      border-left: 4px solid #e53935;
+      margin: 20px 0;
+    }
+    .nutrika-not p {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.8;
+    }
+    .nutrika-not strong {
+      color: var(--dark);
+    }
+    .nutrika-not .cross {
+      color: #e53935;
+      font-weight: 700;
+    }
+    .nutrika-not .check {
+      color: #43a047;
+      font-weight: 700;
+    }
+
+    .nutrika-divider {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+
+    .nutrika-content .btn-primary {
+      display: inline-block;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+
+    /* ===== PRODUCTS / FOOD TECHNOLOGIES ===== */
+    .products-section {
+      padding: 80px 0 60px;
+      background: var(--cream);
+    }
+    .section-label {
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 44px;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 17px;
+      color: var(--gray);
+      max-width: 680px;
+      line-height: 1.8;
+      margin-bottom: 48px;
+    }
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 20px;
+    }
+    .tech-card {
+      background: var(--white);
+      padding: 30px 28px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid rgba(201, 168, 76, 0.1);
+      text-align: center;
+    }
+    .tech-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.12);
+      border-color: var(--gold);
+    }
+    .tech-image {
+      width: 100%;
+      height: 200px;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      background: var(--cream);
+    }
+    .tech-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    .tech-card:hover .tech-image img {
+      transform: scale(1.05);
+    }
+    .tech-icon {
+      font-size: 36px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .tech-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .tech-card .tech-origin {
+      font-size: 12px;
+      color: var(--gold-dark);
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .tech-card p {
+      color: var(--gray);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    /* ===== INGREDIENTS SECTION ===== */
+    .ingredients-section {
+      padding: 60px 0 80px;
+      background: var(--white);
+    }
+    .filter-bar {
+      background: var(--cream);
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      position: sticky;
+      top: 80px;
+      z-index: 100;
+    }
+    .filter-bar .container {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .filter-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .filter-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 6px 18px;
+      border-radius: 50px;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: transparent;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gray);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .filter-btn:hover {
+      border-color: var(--gold);
+      color: var(--primary);
+    }
+    .filter-btn.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--primary);
+    }
+
+    .ing-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .ing-card {
+      background: var(--cream);
+      padding: 30px;
+      border-radius: 20px;
+      border: 1px solid rgba(0,0,0,0.04);
+      transition: var(--transition);
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    .ing-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .ing-card:hover {
+      box-shadow: var(--shadow);
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+    .ing-card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+    .ing-emoji {
+      font-size: 36px;
+      width: 52px;
+      height: 52px;
+      background: var(--white);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .ing-card-title-wrap h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--primary);
+    }
+    .ing-latin {
+      font-size: 13px;
+      color: var(--gray);
+      font-style: italic;
+    }
+    .ing-number {
+      font-size: 12px;
+      color: var(--gold-dark);
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .ing-tags-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .ing-tag {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 3px 12px;
+      border-radius: 50px;
+      font-weight: 600;
+      background: rgba(201, 168, 76, 0.15);
+      color: var(--gold-dark);
+    }
+    .ing-tag.immunity { background: rgba(76, 175, 80, 0.15); color: #2e7d32; }
+    .ing-tag.skin { background: rgba(233, 30, 99, 0.1); color: #ad1457; }
+    .ing-tag.joint { background: rgba(33, 150, 243, 0.1); color: #0d47a1; }
+    .ing-tag.sugar { background: rgba(255, 152, 0, 0.15); color: #e65100; }
+    .ing-tag.antioxidant { background: rgba(156, 39, 176, 0.1); color: #6a1b9a; }
+    .ing-tag.antiinflammatory { background: rgba(244, 67, 54, 0.1); color: #b71c1c; }
+    .ing-body {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .ing-benefit-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 16px;
+    }
+    .ibl-item {
+      font-size: 13px;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ibl-item span {
+      color: var(--gold);
+      font-size: 12px;
+    }
+
+    /* ===== DISCLAIMER ===== */
+    .disclaimer-bar {
+      background: var(--primary);
+      padding: 20px 0;
+    }
+    .disclaimer-bar p {
+      color: rgba(255,255,255,0.7);
+      font-size: 13px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    .disclaimer-bar strong {
+      color: var(--gold-light);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--primary);
+      padding: 30px 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer p {
+      color: rgba(255,255,255,0.5);
+      font-size: 13px;
+      text-align: center;
+    }
+    .footer a {
+      color: var(--gold-light);
+      transition: var(--transition);
+    }
+    .footer a:hover {
+      color: var(--gold);
+    }
+    .footer-global {
+      font-size: 12px;
+      margin-top: 6px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .hero-title { font-size: 52px; }
+      .ing-detail-grid { grid-template-columns: 1fr; }
+      .nutrika-details .container {
+        flex-direction: column;
+        gap: 40px;
+      }
+      .nutrika-image {
+        max-width: 100%;
+        position: relative;
+        top: 0;
+      }
+      .nutrika-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .nutrika-tech-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: var(--primary);
+        padding: 24px;
+        border-radius: 16px;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        min-width: 200px;
+        box-shadow: var(--shadow);
+      }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .hero-container {
+        flex-direction: column;
+        text-align: center;
+        padding: 0 20px;
+        gap: 30px;
+      }
+      .hero-content { max-width: 100%; }
+      .hero-desc { max-width: 100%; }
+      .hero-title { font-size: 40px; }
+      .hero-cta-row { justify-content: center; }
+      .hero-image { max-width: 100%; }
+      .hero-stats-wrap { gap: 20px; }
+      .hero-stat { min-width: 100px; padding: 12px 16px; }
+      .stat-num { font-size: 28px; }
+      .tech-grid { grid-template-columns: 1fr; }
+      .ing-benefit-list { grid-template-columns: 1fr; }
+      .section-title { font-size: 32px; }
+      .filter-bar .container { flex-direction: column; align-items: flex-start; }
+      .tech-image { height: 160px; }
+      .nutrika-grid {
+        grid-template-columns: 1fr;
+      }
+      .nutrika-tech-grid {
+        grid-template-columns: 1fr;
+      }
+      .nutrika-benefits ul {
+        grid-template-columns: 1fr;
+      }
+      .nutrika-content .section-title {
+        font-size: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title { font-size: 32px; }
+      .hero-sub { font-size: 16px; letter-spacing: 3px; }
+      .btn-primary, .btn-outline { padding: 10px 24px; font-size: 14px; }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .hero-title { font-size: 52px; }
+      .ing-detail-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: var(--primary);
+        padding: 24px;
+        border-radius: 16px;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        min-width: 200px;
+        box-shadow: var(--shadow);
+      }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .hero-container {
+        flex-direction: column;
+        text-align: center;
+        padding: 0 20px;
+        gap: 30px;
+      }
+      .hero-content { max-width: 100%; }
+      .hero-desc { max-width: 100%; }
+      .hero-title { font-size: 40px; }
+      .hero-cta-row { justify-content: center; }
+      .hero-image { max-width: 100%; }
+      .hero-stats-wrap { gap: 20px; }
+      .hero-stat { min-width: 100px; padding: 12px 16px; }
+      .stat-num { font-size: 28px; }
+      .tech-grid { grid-template-columns: 1fr; }
+      .ing-benefit-list { grid-template-columns: 1fr; }
+      .section-title { font-size: 32px; }
+      .filter-bar .container { flex-direction: column; align-items: flex-start; }
+      .tech-image { height: 160px; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: 32px; }
+      .hero-sub { font-size: 16px; letter-spacing: 3px; }
+      .btn-primary, .btn-outline { padding: 10px 24px; font-size: 14px; }
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* NAV */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 16px 0;
+      background: rgba(26, 58, 43, 0.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .nav-brand a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .brand-icon { font-size: 28px; color: var(--gold); }
+    .brand-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 18px;
+      color: var(--white);
+      letter-spacing: 1px;
+    }
+    .brand-tag {
+      display: block;
+      font-size: 9px;
+      color: var(--gold-light);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.8);
+      font-size: 14px;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+    .nav-links a:hover,
+    .nav-links a.nav-active { color: var(--gold); }
+    .nav-links a.nav-active::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gold);
+    }
+    .btn-nav {
+      background: var(--gold);
+      color: var(--primary) !important;
+      padding: 8px 24px;
+      border-radius: 50px;
+      font-weight: 600 !important;
+      transition: var(--transition);
+    }
+    .btn-nav:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+    }
+    .hamburger span {
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--white);
+      transition: var(--transition);
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* Page Hero */
+    .page-hero {
+      padding: 140px 0 60px;
+      background: var(--primary);
+      text-align: center;
+    }
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .page-hero .hero-accent {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .page-hero p {
+      color: rgba(255,255,255,0.8);
+      font-size: 18px;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* Products Grid */
+    .products-grid {
+      padding: 60px 0 80px;
+      background: var(--cream);
+    }
+    .products-grid .container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+    .product-card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid rgba(201, 168, 76, 0.1);
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.12);
+      border-color: var(--gold);
+    }
+    .product-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+    .product-card .content {
+      padding: 24px 28px 30px;
+    }
+    .product-card .tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gold-dark);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .product-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .product-card p {
+      color: var(--gray);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    .product-card .learn-more {
+      display: inline-block;
+      margin-top: 16px;
+      color: var(--gold-dark);
+      font-weight: 600;
+      font-size: 14px;
+      transition: var(--transition);
+    }
+    .product-card .learn-more:hover {
+      color: var(--gold);
+      transform: translateX(4px);
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--primary);
+      padding: 30px 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer p {
+      color: rgba(255,255,255,0.5);
+      font-size: 13px;
+      text-align: center;
+    }
+    .footer a { color: var(--gold-light); transition: var(--transition); }
+    .footer a:hover { color: var(--gold); }
+
+    @media (max-width: 1024px) {
+      .products-grid .container { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: var(--primary);
+        padding: 24px;
+        border-radius: 16px;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        min-width: 200px;
+        box-shadow: var(--shadow);
+      }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .products-grid .container { grid-template-columns: 1fr; }
+      .page-hero h1 { font-size: 36px; }
+    }
+    /* ===== NU3COFFEE SECTION ===== */
+.nu3coffee-section {
+  padding: 80px 0 60px;
+  background: var(--cream);
+}
+
+.nu3coffee-section .section-title {
+  font-size: 48px;
+}
+
+.nu3coffee-section .section-title .hero-accent {
+  background: linear-gradient(135deg, #8B4513, #D2691E);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== NU3COFFEE HEADER ===== */
+.nu3coffee-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 50px;
+  padding: 40px 50px;
+  background: linear-gradient(135deg, #2C1810, #4A2818);
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.nu3coffee-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 50%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(210, 105, 30, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.nu3coffee-header-content {
+  flex: 2;
+  position: relative;
+  z-index: 2;
+}
+
+.nu3coffee-header-content .section-label {
+  color: #D2691E;
+  font-size: 13px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.nu3coffee-header-content .section-title {
+  color: var(--white);
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.nu3coffee-header-content .section-sub {
+  color: rgba(255,255,255,0.7);
+  font-size: 17px;
+  max-width: 550px;
+  line-height: 1.8;
+  margin-bottom: 0;
+}
+
+.nu3coffee-header-image {
+  flex: 1;
+  max-width: 200px;
+  position: relative;
+  z-index: 2;
+}
+
+.nu3coffee-header-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  border: 2px solid rgba(210, 105, 30, 0.2);
+  transition: var(--transition);
+}
+
+.nu3coffee-header-image img:hover {
+  transform: scale(1.03);
+  border-color: rgba(210, 105, 30, 0.4);
+}
+
+.header-badge {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(210, 105, 30, 0.9);
+  backdrop-filter: blur(8px);
+  padding: 8px 16px;
+  border-radius: 50px;
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 8px 24px rgba(210, 105, 30, 0.3);
+}
+
+.header-badge .badge-icon {
+  font-size: 16px;
+}
+
+.header-badge .badge-text {
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* ===== NU3COFFEE HERO ===== */
+.nu3coffee-hero {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  background: linear-gradient(135deg, #2C1810, #4A2818);
+  border-radius: 24px;
+  padding: 0;
+  overflow: hidden;
+  margin-bottom: 60px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+.nu3coffee-hero-image {
+  flex: 1;
+  position: relative;
+  min-height: 350px;
+  overflow: hidden;
+}
+
+.nu3coffee-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  min-height: 350px;
+}
+
+.nu3coffee-hero-badge {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(44, 24, 16, 0.85);
+  backdrop-filter: blur(8px);
+  padding: 10px 18px;
+  border-radius: 50px;
+  border: 1px solid rgba(210, 105, 30, 0.3);
+}
+
+.nu3coffee-hero-badge .badge-icon {
+  font-size: 18px;
+}
+
+.nu3coffee-hero-badge .badge-text {
+  color: #D2691E;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.nu3coffee-hero-content {
+  flex: 1.2;
+  padding: 40px 50px 40px 0;
+  color: var(--white);
+}
+
+.nu3coffee-hero-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  color: rgba(255,255,255,0.8);
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.nu3coffee-ingredients-highlight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.highlight-item {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  padding: 4px 16px;
+  border-radius: 12px;
+}
+
+.highlight-item.blackseed {
+  background: linear-gradient(135deg, #2C1810, #4A2818);
+  color: #D2691E;
+  border: 2px solid rgba(210, 105, 30, 0.3);
+}
+
+.highlight-item.pomegranate {
+  background: linear-gradient(135deg, #8B0000, #C41E3A);
+  color: #FF6B6B;
+  border: 2px solid rgba(255, 107, 107, 0.3);
+}
+
+.highlight-item.tigermilk {
+  background: linear-gradient(135deg, #2C1810, #4A2818);
+  color: #D2691E;
+  border: 2px solid rgba(210, 105, 30, 0.3);
+}
+
+.highlight-plus {
+  font-size: 28px;
+  color: rgba(255,255,255,0.4);
+  font-weight: 300;
+}
+
+.nu3coffee-short-desc {
+  font-size: 16px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.nu3coffee-hero-content .btn-primary {
+  background: #D2691E;
+  color: var(--white);
+}
+
+.nu3coffee-hero-content .btn-primary:hover {
+  background: #E67E22;
+  box-shadow: 0 12px 40px rgba(210, 105, 30, 0.4);
+}
+
+/* ===== BENEFITS SECTION ===== */
+.nu3coffee-benefits {
+  margin: 50px 0 60px;
+  padding: 40px;
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+.benefits-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  color: var(--primary);
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  background: var(--cream);
+  border-radius: 12px;
+  transition: var(--transition);
+  border: 1px solid transparent;
+}
+
+.benefit-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+  border-color: rgba(210, 105, 30, 0.2);
+}
+
+.benefit-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.benefit-item p {
+  font-size: 14px;
+  color: var(--dark);
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ===== WHAT'S INSIDE ===== */
+.nu3coffee-inside {
+  margin: 50px 0 60px;
+}
+
+.inside-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  color: var(--primary);
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.inside-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.inside-card {
+  background: var(--white);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  border: 1px solid rgba(210, 105, 30, 0.08);
+}
+
+.inside-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.1);
+  border-color: rgba(210, 105, 30, 0.2);
+}
+
+.inside-image {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.inside-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.inside-card:hover .inside-image img {
+  transform: scale(1.05);
+}
+
+.inside-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(44, 24, 16, 0.7));
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 20px;
+}
+
+.inside-icon {
+  font-size: 36px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(4px);
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.inside-content {
+  padding: 24px 28px 28px;
+}
+
+.inside-content h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.inside-content p {
+  font-size: 14px;
+  color: var(--gray);
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+
+.inside-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.inside-tag {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-weight: 600;
+  background: rgba(210, 105, 30, 0.1);
+  color: #D2691E;
+}
+
+/* ===== CTA SECTION ===== */
+.nu3coffee-cta {
+  margin-top: 40px;
+  padding: 50px 40px;
+  background: linear-gradient(135deg, #2C1810, #4A2818);
+  border-radius: 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.nu3coffee-cta::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(210, 105, 30, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.nu3coffee-cta-content {
+  position: relative;
+  z-index: 2;
+}
+
+.cta-icon {
+  font-size: 56px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.nu3coffee-cta-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.nu3coffee-cta-content p {
+  font-size: 16px;
+  color: rgba(255,255,255,0.7);
+  max-width: 500px;
+  margin: 0 auto 24px;
+  line-height: 1.8;
+}
+
+.nu3coffee-cta-content .btn-primary {
+  background: #D2691E;
+  color: var(--white);
+}
+
+.nu3coffee-cta-content .btn-primary:hover {
+  background: #E67E22;
+  box-shadow: 0 12px 40px rgba(210, 105, 30, 0.4);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .inside-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .nu3coffee-hero {
+    flex-direction: column;
+  }
+  
+  .nu3coffee-hero-image {
+    width: 100%;
+    min-height: 250px;
+  }
+  
+  .nu3coffee-hero-content {
+    padding: 30px 32px 40px;
+  }
+  
+  .highlight-item {
+    font-size: 26px;
+  }
+  
+  .nu3coffee-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 24px;
+  }
+  
+  .nu3coffee-header-content .section-sub {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .nu3coffee-header-image {
+    max-width: 150px;
+  }
+  
+  .header-badge {
+    bottom: -8px;
+    right: -8px;
+    padding: 6px 12px;
+  }
+  
+  .header-badge .badge-text {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nu3coffee-section .section-title {
+    font-size: 36px;
+  }
+  
+  .benefits-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .inside-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .nu3coffee-hero-content h3 {
+    font-size: 22px;
+  }
+  
+  .highlight-item {
+    font-size: 20px;
+    padding: 2px 12px;
+  }
+  
+  .nu3coffee-ingredients-highlight {
+    gap: 8px;
+  }
+  
+  .highlight-plus {
+    font-size: 20px;
+  }
+  
+  .nu3coffee-cta {
+    padding: 30px 20px;
+  }
+  
+  .nu3coffee-cta-content h3 {
+    font-size: 26px;
+  }
+  
+  .nu3coffee-benefits {
+    padding: 24px 16px;
+  }
+  
+  .benefits-title {
+    font-size: 24px;
+  }
+  
+  .nu3coffee-header-content .section-title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .nu3coffee-hero-content {
+    padding: 20px 16px 28px;
+  }
+  
+  .nu3coffee-hero-content h3 {
+    font-size: 18px;
+  }
+  
+  .highlight-item {
+    font-size: 16px;
+    padding: 2px 10px;
+  }
+  
+  .nu3coffee-hero-image {
+    min-height: 200px;
+  }
+  
+  .nu3coffee-hero-badge {
+    bottom: 16px;
+    left: 16px;
+    padding: 6px 14px;
+  }
+  
+  .nu3coffee-hero-badge .badge-text {
+    font-size: 11px;
+  }
+  
+  .nu3coffee-section .section-title {
+    font-size: 28px;
+  }
+  
+  .nu3coffee-header {
+    padding: 24px 16px;
+  }
+  
+  .nu3coffee-header-content .section-title {
+    font-size: 28px;
+  }
+  
+  .nu3coffee-header-image {
+    max-width: 120px;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+ <!-- NAV -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <a href="index.html">
+          <span class="brand-icon">∞</span>
+          <div>
+            <span class="brand-name">LIFE NUTRICS</span>
+            <span class="brand-tag">Elevating Lives</span>
+          </div>
+        </a>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html" class="nav-active">Products</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Our <span class="hero-accent">Products</span></h1>
+      <p>Discover Nutrika — a revolutionary functional food supplement formulated with 18 active ingredients and advanced food technologies from France and Japan.</p>
+    </div>
+  </section>
+
+
+  <!-- ===== NUTRIKA DETAILS SECTION ===== -->
+<section class="nutrika-details" id="nutrika">
+  <div class="container">
+    <div class="nutrika-layout">
+      <!-- Left Column: Image -->
+      <div class="nutrika-image">
+        <img src="image/nutrika.png" alt="Nutrika Functional Food Therapy" />
+        <div class="nutrika-image-badge">
+          <span class="badge-icon">✨</span>
+          <span class="badge-text">Nutraceutical For Vitality & Wellness</span>
+        </div>
+      </div>
+
+      <!-- Right Column: Content -->
+      <div class="nutrika-content">
+        <p class="section-label">About Nutrika</p>
+        <h2 class="section-title">What is <span class="hero-accent">Nutrika?</span></h2>
+        <p class="nutrika-intro">
+          Nutrika is a premium functional food therapy product formulated with <strong>18 powerful natural ingredients</strong> and enhanced with three advanced food technologies from France, Japan, and China.
+        </p>
+        <p style="font-size: 15px; color: var(--gray); line-height: 1.8; margin-bottom: 20px;">
+          It is designed to support the body at a cellular level, helping restore normal body function through nutrition-based science.
+        </p>
+
+        <!-- What Nutrika is NOT -->
+        <div class="nutrika-not">
+          <p><strong>Nutrika is not:</strong></p>
+          <p>
+            <span class="cross">✘</span> A herbal mixture<br/>
+            <span class="cross">✘</span> A synthetic supplement<br/>
+            <span class="cross">✘</span> A pharmaceutical drug that only suppresses symptoms like painkillers
+          </p>
+          <p style="margin-top: 12px;"><strong>Instead, Nutrika falls under the category of:</strong></p>
+          <p>
+            <span class="check">✔</span> Functional Food Therapy<br/>
+            <span class="check">✔</span> Cellular Nutrition Science
+          </p>
+          <p style="margin-top: 12px; font-style: italic; color: var(--primary);">
+            It focuses on nourishing, protecting, and supporting the body's natural repair systems — rather than masking symptoms.
+          </p>
+        </div>
+
+        <div class="nutrika-divider"></div>
+
+        <!-- How Nutrika Works -->
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 26px; color: var(--primary); margin-bottom: 12px;">
+          🔬 How Nutrika Works in the Body
+        </h3>
+        <p style="font-size: 15px; color: var(--gray); line-height: 1.8; margin-bottom: 16px;">
+          Nutrika works at the cellular level, where all chronic conditions begin.
+        </p>
+        <p style="font-size: 15px; color: var(--gray); line-height: 1.8; margin-bottom: 16px;">
+          Many chronic challenges — such as inflammation, joint pain, nerve damage, high blood sugar, fatigue, weak immunity, and organ dysfunction — start when cells become:
+        </p>
+        <ul style="list-style: none; display: flex; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 20px; padding: 0;">
+          <li style="font-size: 14px; color: var(--dark);">• Damaged</li>
+          <li style="font-size: 14px; color: var(--dark);">• Inflamed</li>
+          <li style="font-size: 14px; color: var(--dark);">• Oxidized</li>
+          <li style="font-size: 14px; color: var(--dark);">• Aged</li>
+          <li style="font-size: 14px; color: var(--dark);">• Nutrient deficient</li>
+        </ul>
+
+        <div class="nutrika-benefits">
+          <h4>Nutrika supports the body by:</h4>
+          <ul>
+            <li>Supporting repair of damaged cells</li>
+            <li>Promoting healthy cell regeneration</li>
+            <li>Encouraging rejuvenation of aging cells</li>
+            <li>Supporting detoxification pathways</li>
+            <li>Helping restore normal metabolic balance</li>
+            <li>Supporting blood purification and circulation</li>
+            <li>Enhancing the body's natural healing response</li>
+          </ul>
+        </div>
+
+        <p style="font-size: 15px; color: var(--gray); line-height: 1.8; font-style: italic;">
+          Instead of just covering symptoms, Nutrika focuses on addressing underlying cellular dysfunction through advanced nutritional science.
+        </p>
+
+        <div class="nutrika-divider"></div>
+
+        <!-- 3 Technologies -->
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 26px; color: var(--primary); margin-bottom: 16px;">
+          🌍 The 3 Powerful Food Technologies in Nutrika
+        </h3>
+        <p style="font-size: 15px; color: var(--gray); line-height: 1.8; margin-bottom: 20px;">
+          Nutrika stands out because it combines three internationally recognized food technologies:
+        </p>
+
+        <div class="nutrika-tech-grid">
+          <div class="nutrika-tech-item">
+            <span class="tech-flag">🇫🇷</span>
+            <h5>MANGOSELECT®</h5>
+            <span class="tech-sub">France Technology</span>
+            <p>Mangosteen fruit extract rich in xanthones — powerful natural antioxidants for joint health and inflammation reduction.</p>
+          </div>
+          <div class="nutrika-tech-item">
+            <span class="tech-flag">🇯🇵</span>
+            <h5>CEREPRON-F®</h5>
+            <span class="tech-sub">Japan Technology</span>
+            <p>Specialized fermented yeast extract rich in antioxidants and cellular repair nutrients for rejuvenation.</p>
+          </div>
+          <div class="nutrika-tech-item">
+            <span class="tech-flag">🇨🇳</span>
+            <h5>L-ARABINOSE</h5>
+            <span class="tech-sub">China Technology</span>
+            <p>Natural plant-based sugar regulator from corn cob fiber for blood sugar control and metabolism support.</p>
+          </div>
+        </div>
+
+        <!-- What Nutrika Can Support - WITH IMAGE -->
+        <div class="nutrika-support-with-image">
+          <div class="nutrika-support-content">
+            <h4>🌱 What Can Nutrika Support?</h4>
+            <p style="font-size: 14px; color: var(--gray); line-height: 1.8; margin-bottom: 12px;">
+              Because Nutrika works on inflammation, oxidative stress, and metabolic imbalance, it supports management of:
+            </p>
+            <ul>
+              <li>Chronic inflammation</li>
+              <li>Joint pain and arthritis</li>
+              <li>Blood sugar imbalance</li>
+              <li>High cholesterol</li>
+              <li>Fatigue</li>
+              <li>Poor immunity</li>
+              <li>Slow metabolism</li>
+              <li>Organ stress</li>
+              <li>Circulation challenges</li>
+              <li>Early degenerative conditions</li>
+            </ul>
+          </div>
+          <div class="nutrika-support-image">
+            <img src="image/benefit.png" alt="Nutrika Wellness Benefits" />
+            <div class="support-image-overlay">
+              <span class="overlay-icon">💚</span>
+              <span class="overlay-text">Amazing Life</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="nutrika-not" style="border-left-color: var(--gold); background: rgba(201, 168, 76, 0.08);">
+          <p style="font-size: 14px; color: var(--gray); line-height: 1.8;">
+            <strong>⚠️ Important:</strong> Nutrika is not a replacement for prescribed medication. It is a functional food designed to support overall health and recovery under proper guidance.
+          </p>
+        </div>
+
+        <div class="nutrika-divider"></div>
+
+        <!-- Why Nutrika is Different -->
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 26px; color: var(--primary); margin-bottom: 12px;">
+          🧬 Why Nutrika is Different
+        </h3>
+        <p style="font-size: 15px; color: var(--gray); line-height: 1.8; margin-bottom: 12px;">
+          Most medications focus on symptom suppression.
+        </p>
+        <ul style="list-style: none; padding: 0; margin-bottom: 16px;">
+          <li style="font-size: 14px; color: var(--gray); line-height: 1.8;">• Painkillers reduce pain.</li>
+          <li style="font-size: 14px; color: var(--gray); line-height: 1.8;">• Steroids reduce inflammation temporarily.</li>
+          <li style="font-size: 14px; color: var(--gray); line-height: 1.8;">• Some drugs manage sugar levels without correcting metabolic dysfunction.</li>
+        </ul>
+        <p style="font-size: 15px; color: var(--gray); line-height: 1.8; margin-bottom: 12px;">
+          <strong>Nutrika focuses on:</strong>
+        </p>
+        <ul style="list-style: none; padding: 0; margin-bottom: 16px;">
+          <li style="font-size: 14px; color: var(--dark);">✔ Supporting the root cellular imbalance</li>
+          <li style="font-size: 14px; color: var(--dark);">✔ Reducing oxidative damage</li>
+          <li style="font-size: 14px; color: var(--dark);">✔ Supporting organ function</li>
+          <li style="font-size: 14px; color: var(--dark);">✔ Restoring natural body balance</li>
+        </ul>
+        <p style="font-size: 15px; color: var(--gray); line-height: 1.8; font-style: italic;">
+          It helps the body return to optimal functionality — the way it was designed to function.
+        </p>
+
+        <div class="nutrika-divider"></div>
+
+        <!-- Health is True Wealth -->
+        <div style="background: linear-gradient(135deg, var(--primary), var(--primary-light)); padding: 30px 32px; border-radius: 16px; margin-top: 20px;">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 26px; color: var(--gold); margin-bottom: 8px;">
+            💚 Health is True Wealth
+          </h3>
+          <p style="font-size: 15px; color: rgba(255,255,255,0.9); line-height: 1.8;">
+            When your cells are healthy: Your organs function better. Your blood circulates properly. Your energy increases. Inflammation reduces. Your body heals faster.
+          </p>
+          <p style="font-size: 16px; color: var(--gold-light); line-height: 1.8; margin-top: 8px; font-weight: 600;">
+            That is the power of functional nutrition.
+          </p>
+        </div>
+
+        <a href="#ingredients" class="btn-primary" style="display: inline-block; text-decoration: none; margin-top: 30px;">
+          Explore the 18 Ingredients →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- ===== NU3COFFEE SECTION ===== -->
+<section class="section nu3coffee-section" id="nu3coffee">
+  <div class="container">
+    <!-- Nu3Coffee Header -->
+    <div class="nu3coffee-header">
+      <div class="nu3coffee-header-content">
+        <p class="section-label" data-i18n="nu3coffeeLabel">Premium Functional Coffee</p>
+        <h2 class="section-title" data-i18n="nu3coffeeTitle">
+          Nu3<span class="hero-accent">Coffee</span>
+        </h2>
+        <p class="section-sub" data-i18n="nu3coffeeDesc">
+          A functional coffee designed not just for energy — but for immunity, metabolic balance, brain support, and overall wellness.
+        </p>
+      </div>
+      <div class="nu3coffee-header-image">
+        <img src="image/nu3.png" alt="Nu3Coffee" />
+        <div class="header-badge">
+          <span class="badge-icon">☕</span>
+          <span class="badge-text" data-i18n="nu3coffeeBadge">For Male & Female Health</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nu3Coffee Hero/Feature Section -->
+    <div class="nu3coffee-hero">
+      <div class="nu3coffee-hero-image">
+        <img src="image/nu2.png" alt="Nu3Coffee - Functional Coffee" />
+        <div class="nu3coffee-hero-badge">
+          <span class="badge-icon">☕</span>
+          <span class="badge-text" data-i18n="nu3coffeeBadge">For Male & Female Health</span>
+        </div>
+      </div>
+      <div class="nu3coffee-hero-content">
+        <h3 data-i18n="nu3coffeeTagline">Coffee Premix with</h3>
+        <div class="nu3coffee-ingredients-highlight">
+          <span class="highlight-item blackseed">Black Seed</span>
+          <span class="highlight-plus">+</span>
+          <span class="highlight-item pomegranate">Pomegranate</span>
+          <span class="highlight-plus">+</span>
+          <span class="highlight-item tigermilk">Tiger Milk Mushroom</span>
+        </div>
+        <p class="nu3coffee-short-desc" data-i18n="nu3coffeeShortDesc">
+          A powerful blend of nature's most potent ingredients for holistic wellness.
+        </p>
+        <a href="#nu3coffee-benefits" class="btn-primary" data-i18n="nu3coffeeBtn">Discover Benefits</a>
+      </div>
+    </div>
+
+    <!-- Key Benefits Grid -->
+    <div class="nu3coffee-benefits" id="nu3coffee-benefits">
+      <h3 class="benefits-title" data-i18n="nu3coffeeBenefitsTitle">✦ Key Benefits</h3>
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <span class="benefit-icon">⚡</span>
+          <p data-i18n="nu3coffeeBenefit1">Boost energy naturally</p>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🌸</span>
+          <p data-i18n="nu3coffeeBenefit2">Regulate female hormones</p>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">❤️</span>
+          <p data-i18n="nu3coffeeBenefit3">Improve cardiovascular health</p>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🫁</span>
+          <p data-i18n="nu3coffeeBenefit4">Increase lung immunity</p>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🌿</span>
+          <p data-i18n="nu3coffeeBenefit5">Promote healthy respiratory system</p>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🛡️</span>
+          <p data-i18n="nu3coffeeBenefit6">Support general body immunity & digestion</p>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🧠</span>
+          <p data-i18n="nu3coffeeBenefit7">Protect from chronic stress</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- What's Inside Section -->
+    <div class="nu3coffee-inside">
+      <h3 class="inside-title" data-i18n="nu3coffeeInsideTitle">✦ What's Inside</h3>
+      <div class="inside-grid">
+        <!-- Black Seed -->
+        <div class="inside-card">
+          <div class="inside-image">
+            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop&crop=center" alt="Black Seed" />
+            <div class="inside-overlay">
+              <span class="inside-icon">🌱</span>
+            </div>
+          </div>
+          <div class="inside-content">
+            <h4 data-i18n="nu3coffeeInside1">Black Seed</h4>
+            <p data-i18n="nu3coffeeInside1Desc">Rich in thymoquinone, a powerful antioxidant with anti-inflammatory properties. Supports immune function, respiratory health, and overall vitality.</p>
+            <div class="inside-tags">
+              <span class="inside-tag" data-i18n="nu3coffeeTag1">Immunity</span>
+              <span class="inside-tag" data-i18n="nu3coffeeTag2">Anti-inflammatory</span>
+              <span class="inside-tag" data-i18n="nu3coffeeTag3">Antioxidant</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pomegranate -->
+        <div class="inside-card">
+          <div class="inside-image">
+            <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=400&h=300&fit=crop&crop=center" alt="Pomegranate" />
+            <div class="inside-overlay">
+              <span class="inside-icon">🍎</span>
+            </div>
+          </div>
+          <div class="inside-content">
+            <h4 data-i18n="nu3coffeeInside2">Pomegranate</h4>
+            <p data-i18n="nu3coffeeInside2Desc">Packed with polyphenols and ellagic acid that support heart health, hormone balance, and cellular protection against oxidative stress.</p>
+            <div class="inside-tags">
+              <span class="inside-tag" data-i18n="nu3coffeeTag4">Heart Health</span>
+              <span class="inside-tag" data-i18n="nu3coffeeTag5">Hormone Balance</span>
+              <span class="inside-tag" data-i18n="nu3coffeeTag6">Anti-aging</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tiger Milk Mushroom -->
+        <div class="inside-card">
+          <div class="inside-image">
+            <img src="https://images.unsplash.com/photo-1578691602411-b1bbd6c8b04c?w=400&h=300&fit=crop&crop=center" alt="Tiger Milk Mushroom" />
+            <div class="inside-overlay">
+              <span class="inside-icon">🍄</span>
+            </div>
+          </div>
+          <div class="inside-content">
+            <h4 data-i18n="nu3coffeeInside3">Tiger Milk Mushroom</h4>
+            <p data-i18n="nu3coffeeInside3Desc">A prized medicinal mushroom rich in beta-glucans and polysaccharides that support lung health, immunity, and respiratory function.</p>
+            <div class="inside-tags">
+              <span class="inside-tag" data-i18n="nu3coffeeTag7">Lung Health</span>
+              <span class="inside-tag" data-i18n="nu3coffeeTag8">Immunity</span>
+              <span class="inside-tag" data-i18n="nu3coffeeTag9">Respiratory</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="nu3coffee-cta">
+      <div class="nu3coffee-cta-content">
+        <span class="cta-icon">☕</span>
+        <h3 data-i18n="nu3coffeeCtaTitle">Start Your Day the Nu3Coffee Way</h3>
+        <p data-i18n="nu3coffeeCtaDesc">Experience the perfect blend of premium coffee and functional ingredients for your daily wellness ritual.</p>
+        <a href="#contact" class="btn-primary" data-i18n="nu3coffeeCtaBtn">Order Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- ===== DISCLAIMER ===== -->
+  <div class="disclaimer-bar">
+    <div class="container">
+      <p>⚕️ <strong>Health Notice:</strong> Nutrika is a functional food supplement. This information is educational and does not constitute medical advice. Consult your healthcare provider before use if you have existing medical conditions or are on prescription medication.</p>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Life Nutrics SS Limited · Nyakuron Cultural Centre, Juba · <a href="mailto:info@lifenutricssslimited.com">info@lifenutricssslimited.com</a></p>
+      <p class="footer-global">Aligned with <a href="https://www.lifenutrics.com" target="_blank">Global Life Nutrics Sdn. Bhd.</a> · Malaysia</p>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // Nav scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      hamburger.classList.toggle('active');
+    });
+
+    // Close nav on link click (mobile)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('active');
+      });
+    });
+
+    // Filter functionality
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.ing-card').forEach(card => {
+          if (filter === 'all' || (card.dataset.tags || '').includes(filter)) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Intersection Observer for reveal animation
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.ing-card').forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
