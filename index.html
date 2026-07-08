@@ -443,7 +443,79 @@
     <p class="footer-global" data-i18n="footerGlobal">Aligned with Global Life Nutrics Sdn. Bhd. · Malaysia</p>
   </div>
 </footer>
+<!-- Translator Begins -->
+<div class="gtranslate_wrapper" id="gtranslate-float"></div>
 
+<style>
+  #gtranslate-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+    animation: gt-fade-in 0.6s ease forwards;
+    animation-delay: 0.8s;
+  }
+
+  #gtranslate-float .gt_float_switcher,
+  #gtranslate-float .gtranslate_wrapper {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+    border-radius: 50px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #ffffff;
+  }
+
+  #gtranslate-float:hover .gt_float_switcher,
+  #gtranslate-float:hover .gtranslate_wrapper {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Gentle idle pulse so it doesn't feel static */
+  #gtranslate-float {
+    animation: gt-fade-in 0.6s ease forwards, gt-pulse 3.5s ease-in-out 1.6s infinite;
+  }
+
+  @keyframes gt-fade-in {
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes gt-pulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18); }
+    50% { box-shadow: 0 4px 24px rgba(0, 122, 255, 0.25); }
+  }
+
+  /* Responsive sizing */
+  @media (max-width: 768px) {
+    #gtranslate-float {
+      bottom: 16px;
+      right: 16px;
+      transform-origin: bottom right;
+    }
+    #gtranslate-float .gt_float_switcher img,
+    #gtranslate-float .gtranslate_wrapper img {
+      width: 20px !important;
+      height: 20px !important;
+    }
+  }
+</style>
+
+<script>
+window.gtranslateSettings = {
+    default_language: "en",
+    alt_flags: {"en":"usa"},
+    wrapper_selector: ".gtranslate_wrapper",
+    flag_style: "3d",
+    switcher_horizontal_position: "right",
+    switcher_vertical_position: "bottom",
+};
+</script>
+<script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+<!-- Translator Ends -->
   <script>
     // Sticky nav
     const navbar = document.getElementById('navbar');
